@@ -18,8 +18,8 @@ namespace CalculatorApp
         //记录上一次点击的计算操作按钮
         char operation;
 
-        //存储了上次点击了什么按钮，0代表什么都没点，1代表了数字按钮
-        private int _lastButtonStatus = 0;
+        //上一次点击的是否为数字按钮
+        private bool _lastButtonStatus = false;
 
         public CalculateForm()
         {
@@ -48,11 +48,14 @@ namespace CalculatorApp
         /// <param name="e"></param>
         private void btn_add_Click(object sender, EventArgs e)
         {
-            BtnCalculteFilter(sender, e);
-            firstValue = textBox_result.Text;
-            operation = '+';
-            textBox_step.Text = $"{firstValue}+";
-            textBox_result.Text = string.Empty;
+            if (_lastButtonStatus == true)
+            {
+                BtnCalculteFilter(sender, e);
+                firstValue = textBox_result.Text;
+                operation = '+';
+                textBox_step.Text = $"{firstValue}+";
+                textBox_result.Text = string.Empty;
+            }
         }
 
         /// <summary>
@@ -62,11 +65,14 @@ namespace CalculatorApp
         /// <param name="e"></param>
         private void btn_sub_Click(object sender, EventArgs e)
         {
-            BtnCalculteFilter(sender, e);
-            firstValue = textBox_result.Text;
-            operation = '-';
-            textBox_step.Text = $"{firstValue}-";
-            textBox_result.Text = string.Empty;
+            if (_lastButtonStatus == true)
+            {
+                BtnCalculteFilter(sender, e);
+                firstValue = textBox_result.Text;
+                operation = '-';
+                textBox_step.Text = $"{firstValue}-";
+                textBox_result.Text = string.Empty;
+            }
         }
 
         /// <summary>
@@ -76,11 +82,14 @@ namespace CalculatorApp
         /// <param name="e"></param>
         private void btn_mult_Click(object sender, EventArgs e)
         {
-            BtnCalculteFilter(sender, e);
-            firstValue = textBox_result.Text;
-            operation = '*';
-            textBox_step.Text = $"{firstValue}*";
-            textBox_result.Text = string.Empty;
+            if (_lastButtonStatus == true)
+            {
+                BtnCalculteFilter(sender, e);
+                firstValue = textBox_result.Text;
+                operation = '*';
+                textBox_step.Text = $"{firstValue}*";
+                textBox_result.Text = string.Empty;
+            }
         }
 
         /// <summary>
@@ -90,11 +99,14 @@ namespace CalculatorApp
         /// <param name="e"></param>
         private void btn_div_Click(object sender, EventArgs e)
         {
-            BtnCalculteFilter(sender ,e);
-            firstValue = textBox_result.Text;
-            operation = '/';
-            textBox_step.Text = $"{firstValue}/";
-            textBox_result.Text = string.Empty;
+            if (_lastButtonStatus == true)
+            {
+                BtnCalculteFilter(sender, e);
+                firstValue = textBox_result.Text;
+                operation = '/';
+                textBox_step.Text = $"{firstValue}/";
+                textBox_result.Text = string.Empty;
+            }
         }
 
         /// <summary>
@@ -102,6 +114,8 @@ namespace CalculatorApp
         /// </summary>
         private void BtnCalculteFilter(object sender, EventArgs e)
         {
+            _lastButtonStatus = false;
+
             if (textBox_step.Text.EndsWith("+") || textBox_step.Text.EndsWith("-")
                     || textBox_step.Text.EndsWith("*") || textBox_step.Text.EndsWith("/"))
             {
@@ -120,7 +134,7 @@ namespace CalculatorApp
             textBox_result.Text = "0";
             firstValue = string.Empty;
             secondValue = string.Empty;
-            _lastButtonStatus = 0;
+            _lastButtonStatus = false;
         }
 
         /// <summary>
@@ -194,7 +208,7 @@ namespace CalculatorApp
         {
             Button btn = (Button)sender;
 
-            if (_lastButtonStatus == 0 || textBox_result.Text == "0")
+            if (_lastButtonStatus == false || textBox_result.Text == "0")
             {
                 textBox_result.Text = btn.Text;
             }
@@ -203,7 +217,7 @@ namespace CalculatorApp
                 textBox_result.Text += btn.Text;
             }
 
-            _lastButtonStatus = 1;
+            _lastButtonStatus = true;
         }
     }
 }

@@ -15,7 +15,7 @@ namespace CalculatorApp
         //定义操作数与结果
         string firstValue, secondValue, resultValue;
 
-        //记录点击的计算操作按钮
+        //记录上一次点击的计算操作按钮
         char operation;
 
         //存储了上次点击了什么按钮，0代表什么都没点，1代表了数字按钮
@@ -42,7 +42,7 @@ namespace CalculatorApp
         }
 
         /// <summary>
-        /// 加法
+        /// 加法操作
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -56,7 +56,7 @@ namespace CalculatorApp
         }
 
         /// <summary>
-        /// 减法
+        /// 减法操作
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -70,7 +70,7 @@ namespace CalculatorApp
         }
 
         /// <summary>
-        /// 乘法
+        /// 乘法操作
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -84,7 +84,7 @@ namespace CalculatorApp
         }
 
         /// <summary>
-        /// 除法
+        /// 除法操作
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -98,7 +98,7 @@ namespace CalculatorApp
         }
 
         /// <summary>
-        /// 计算按钮连续操作
+        /// 多个计算数连续计算
         /// </summary>
         private void BtnCalculteFilter(object sender, EventArgs e)
         {

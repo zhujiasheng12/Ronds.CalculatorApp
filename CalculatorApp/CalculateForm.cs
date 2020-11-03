@@ -10,6 +10,11 @@ using System.Windows.Forms;
 
 namespace CalculatorApp
 {
+    /// <summary>
+    /// 功能介绍:计算器窗体
+    /// 作者:朱家生
+    /// 创建日期:2020.11.3
+    /// </summary>
     public partial class CalculateForm : Form
     {
         //定义操作数与结果
@@ -28,85 +33,17 @@ namespace CalculatorApp
 
         private void CalculateForm_Load(object sender, EventArgs e)
         {
-            btn_zero.Click += new EventHandler(OnBtnVal_Click);
-            btn_one.Click += new EventHandler(OnBtnVal_Click);
-            btn_two.Click += new EventHandler(OnBtnVal_Click);
-            btn_three.Click += new EventHandler(OnBtnVal_Click);
-            btn_four.Click += new EventHandler(OnBtnVal_Click);
-            btn_five.Click += new EventHandler(OnBtnVal_Click);
-            btn_six.Click += new EventHandler(OnBtnVal_Click);
-            btn_seven.Click += new EventHandler(OnBtnVal_Click);
-            btn_eight.Click += new EventHandler(OnBtnVal_Click);
-            btn_nine.Click += new EventHandler(OnBtnVal_Click);
-            btn_point.Click += new EventHandler(OnBtnVal_Click);
-        }
-
-        /// <summary>
-        /// 加法操作
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void btn_add_Click(object sender, EventArgs e)
-        {
-            if (_lastButtonStatus == true)
-            {
-                BtnCalculteFilter(sender, e);
-                firstValue = textBox_result.Text;
-                operation = '+';
-                textBox_step.Text = $"{firstValue}+";
-                textBox_result.Text = string.Empty;
-            }
-        }
-
-        /// <summary>
-        /// 减法操作
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void btn_sub_Click(object sender, EventArgs e)
-        {
-            if (_lastButtonStatus == true)
-            {
-                BtnCalculteFilter(sender, e);
-                firstValue = textBox_result.Text;
-                operation = '-';
-                textBox_step.Text = $"{firstValue}-";
-                textBox_result.Text = string.Empty;
-            }
-        }
-
-        /// <summary>
-        /// 乘法操作
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void btn_mult_Click(object sender, EventArgs e)
-        {
-            if (_lastButtonStatus == true)
-            {
-                BtnCalculteFilter(sender, e);
-                firstValue = textBox_result.Text;
-                operation = '*';
-                textBox_step.Text = $"{firstValue}*";
-                textBox_result.Text = string.Empty;
-            }
-        }
-
-        /// <summary>
-        /// 除法操作
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void btn_div_Click(object sender, EventArgs e)
-        {
-            if (_lastButtonStatus == true)
-            {
-                BtnCalculteFilter(sender, e);
-                firstValue = textBox_result.Text;
-                operation = '/';
-                textBox_step.Text = $"{firstValue}/";
-                textBox_result.Text = string.Empty;
-            }
+            btnZero.Click += new EventHandler(OnBtnVal_Click);
+            btnOne.Click += new EventHandler(OnBtnVal_Click);
+            btnTwo.Click += new EventHandler(OnBtnVal_Click);
+            btnThree.Click += new EventHandler(OnBtnVal_Click);
+            btnFour.Click += new EventHandler(OnBtnVal_Click);
+            btnFive.Click += new EventHandler(OnBtnVal_Click);
+            btnSix.Click += new EventHandler(OnBtnVal_Click);
+            btnSeven.Click += new EventHandler(OnBtnVal_Click);
+            btnEight.Click += new EventHandler(OnBtnVal_Click);
+            btnNine.Click += new EventHandler(OnBtnVal_Click);
+            btnPoint.Click += new EventHandler(OnBtnVal_Click);
         }
 
         /// <summary>
@@ -116,10 +53,10 @@ namespace CalculatorApp
         {
             _lastButtonStatus = false;
 
-            if (textBox_step.Text.EndsWith("+") || textBox_step.Text.EndsWith("-")
-                    || textBox_step.Text.EndsWith("*") || textBox_step.Text.EndsWith("/"))
+            if (textBoxStep.Text.EndsWith("+") || textBoxStep.Text.EndsWith("-")
+                    || textBoxStep.Text.EndsWith("*") || textBoxStep.Text.EndsWith("/"))
             {
-                btn_equal_Click(sender, e);
+                btnEqualClick(sender, e);
             }
         }
 
@@ -128,10 +65,10 @@ namespace CalculatorApp
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void btn_clear_Click(object sender, EventArgs e)
+        private void btnClearClick(object sender, EventArgs e)
         {
-            textBox_step.Text = "0";
-            textBox_result.Text = "0";
+            textBoxStep.Text = "0";
+            textBoxResult.Text = "0";
             firstValue = string.Empty;
             secondValue = string.Empty;
             _lastButtonStatus = false;
@@ -142,11 +79,79 @@ namespace CalculatorApp
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void btn_delete_Click(object sender, EventArgs e)
+        private void btnDeleteClick(object sender, EventArgs e)
         {
-            if (textBox_result.Text.Length > 0)
+            if (textBoxResult.Text.Length > 0)
             {
-                textBox_result.Text = textBox_result.Text.Substring(0, textBox_result.Text.Length - 1);
+                textBoxResult.Text = textBoxResult.Text.Substring(0, textBoxResult.Text.Length - 1);
+            }
+        }
+
+        /// <summary>
+        /// 加法操作
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void btnAddClick(object sender, EventArgs e)
+        {
+            if (_lastButtonStatus == true)
+            {
+                BtnCalculteFilter(sender, e);
+                firstValue = textBoxResult.Text;
+                operation = '+';
+                textBoxStep.Text = $"{firstValue}+";
+                textBoxResult.Text = string.Empty;
+            }
+        }
+
+        /// <summary>
+        /// 减法操作
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void btnSubClick(object sender, EventArgs e)
+        {
+            if (_lastButtonStatus == true)
+            {
+                BtnCalculteFilter(sender, e);
+                firstValue = textBoxResult.Text;
+                operation = '-';
+                textBoxStep.Text = $"{firstValue}-";
+                textBoxResult.Text = string.Empty;
+            }
+        }
+
+        /// <summary>
+        /// 乘法操作
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void btnMultClick(object sender, EventArgs e)
+        {
+            if (_lastButtonStatus == true)
+            {
+                BtnCalculteFilter(sender, e);
+                firstValue = textBoxResult.Text;
+                operation = '*';
+                textBoxStep.Text = $"{firstValue}*";
+                textBoxResult.Text = string.Empty;
+            }
+        }
+
+        /// <summary>
+        /// 除法操作
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void btnDivClick(object sender, EventArgs e)
+        {
+            if (_lastButtonStatus == true)
+            {
+                BtnCalculteFilter(sender, e);
+                firstValue = textBoxResult.Text;
+                operation = '/';
+                textBoxStep.Text = $"{firstValue}/";
+                textBoxResult.Text = string.Empty;
             }
         }
 
@@ -155,12 +160,12 @@ namespace CalculatorApp
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void btn_equal_Click(object sender, EventArgs e)
+        private void btnEqualClick(object sender, EventArgs e)
         {
             try
             {
-                secondValue = textBox_result.Text;
-                textBox_step.Text += $"{secondValue}=";
+                secondValue = textBoxResult.Text;
+                textBoxStep.Text += $"{secondValue}=";
 
                 double outFirst, outSecond;
 
@@ -191,7 +196,7 @@ namespace CalculatorApp
                         break;
                 }
 
-                textBox_result.Text = resultValue;
+                textBoxResult.Text = resultValue;
             }
             catch (Exception ex)
             {
@@ -208,13 +213,13 @@ namespace CalculatorApp
         {
             Button btn = (Button)sender;
 
-            if (_lastButtonStatus == false || textBox_result.Text == "0")
+            if (_lastButtonStatus == false || textBoxResult.Text == "0")
             {
-                textBox_result.Text = btn.Text;
+                textBoxResult.Text = btn.Text;
             }
             else
             {
-                textBox_result.Text += btn.Text;
+                textBoxResult.Text += btn.Text;
             }
 
             _lastButtonStatus = true;
